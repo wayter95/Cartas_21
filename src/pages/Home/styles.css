@@ -1,0 +1,81 @@
+#page-home{
+    width: 100vw;
+    height: 100%;
+
+    background: #126226;
+}
+.content{
+    display: grid;
+    grid-template-columns: 400px auto 200px;
+    grid-template-areas: "deck players score";
+}
+
+.deck{
+    height: calc(100vh - 50px);
+    grid-area: deck;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "i" "s";
+}
+
+.init{
+    grid-area: i;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.init button{
+    cursor: pointer;
+    border: none;
+    height: 4.0rem;
+    border-radius: 2rem;
+    width: 50%;
+    background: #0037FC;
+
+    color: #ffffff;
+    font: 500 2.4rem Roboto;
+
+    transition: opacity 0.2s;
+ }
+.init button:hover{
+    opacity: 0.8;
+}
+.show-cards{
+    grid-area: s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.show-cards button{
+    cursor: pointer;
+    border: none;
+    height: 4.0rem;
+    border-radius: 2rem;
+    width: 50%;
+    background: #0037FC;
+
+    color: #ffffff;
+    font: 500 2.4rem Roboto;
+
+    transition: opacity 0.2s;
+ }
+ .show-cards button:hover{
+    opacity: 0.8;
+}
+.deck-content{
+    margin-top: 2.0rem;
+    margin-bottom: 2.0rem;
+    width: 200px;
+    height: 350px;
+    background: #ffffff;
+    opacity: 0.9;
+}
+
+.players{
+    grid-area: players;
+}
+.scoreboard{
+    grid-area: score;
+}
