@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header';
+
+import fullDeck from '../../assets/images/Cartas/fullDeck.png';
+import almostFull from '../../assets/images/Cartas/almostDeck.png';
+import halfDeck from '../../assets/images/Cartas/halfDeck.png';
+import emptyDeck from '../../assets/images/Cartas/emptyDeck.png';
 
 //#region  Imagens Cartas
 import asEspada from '../../assets/images/Cartas/Espada/1.jpg';
@@ -59,70 +64,97 @@ import reiPaus from '../../assets/images/Cartas/Paus/13.jpg';
 import './styles.css';
 const Home = () => {
     const [deck, setDeck] = useState([
-        {id:1, card: asEspada, value:1},
-        {id:2, card: doisEspada, value:2},
-        {id:3, card: tresEspada, value:3},
-        {id:4, card: quatroEspada, value:4},
-        {id:5, card: cincoEspada, value:5},
-        {id:6, card: seisEspada, value:6},
-        {id:7, card: seteEspada, value:7},
-        {id:8, card: oitoEspada, value:8},
-        {id:9, card: noveEspada, value:9},
-        {id:10, card: dezEspada, value:10},
-        {id:11, card: valeteEspada, value:11},
-        {id:12, card: damaEspada, value:12},
-        {id:13, card: reiEspada, value:13},
-        {id:14, card: asCopas, value:1},
-        {id:15, card: doisCopas, value:2},
-        {id:16, card: tresCopas, value:3},
-        {id:17, card: quatroCopas, value:4},
-        {id:18, card: cincoCopas, value:5},
-        {id:19, card: seisCopas, value:6},
-        {id:20, card: seteCopas, value:7},
-        {id:21, card: oitoCopas, value:8},
-        {id:22, card: noveCopas, value:9},
-        {id:23, card: dezCopas, value:10},
-        {id:25, card: valeteCopas, value:11},
-        {id:25, card: damaCopas, value:12},
-        {id:26, card: reiCopas, value:13},
-        {id:27, card: asOuro, value:1},
-        {id:28, card: doisOuro, value:2},
-        {id:29, card: tresOuro, value:3},
-        {id:30, card: quatroOuro, value:4},
-        {id:31, card: cincoOuro, value:5},
-        {id:32, card: seisOuro, value:6},
-        {id:33, card: seteOuro, value:7},
-        {id:34, card: oitoOuro, value:8},
-        {id:35, card: noveOuro, value:9},
-        {id:36, card: dezOuro, value:10},
-        {id:37, card: valeteOuro, value:11},
-        {id:38, card: damaOuro, value:12},
-        {id:39, card: reiOuro, value:13},
-        {id:40, card: asPaus, value:1},
-        {id:41, card: doisPaus, value:2},
-        {id:42, card: tresPaus, value:3},
-        {id:43, card: quatroPaus, value:4},
-        {id:44, card: cincoPaus, value:5},
-        {id:45, card: seisPaus, value:6},
-        {id:46, card: setePaus, value:7},
-        {id:47, card: oitoPaus, value:8},
-        {id:48, card: novePaus, value:9},
-        {id:49, card: dezPaus, value:10},
-        {id:50, card: valetePaus, value:11},
-        {id:51, card: damaPaus, value:12},
-        {id:52, card: reiPaus, value:13},
+        { id: 1, card: asEspada, value: 1 },
+        { id: 2, card: doisEspada, value: 2 },
+        { id: 3, card: tresEspada, value: 3 },
+        { id: 4, card: quatroEspada, value: 4 },
+        { id: 5, card: cincoEspada, value: 5 },
+        { id: 6, card: seisEspada, value: 6 },
+        { id: 7, card: seteEspada, value: 7 },
+        { id: 8, card: oitoEspada, value: 8 },
+        { id: 9, card: noveEspada, value: 9 },
+        { id: 10, card: dezEspada, value: 10 },
+        { id: 11, card: valeteEspada, value: 11 },
+        { id: 12, card: damaEspada, value: 12 },
+        { id: 13, card: reiEspada, value: 13 },
+        { id: 14, card: asCopas, value: 1 },
+        { id: 15, card: doisCopas, value: 2 },
+        { id: 16, card: tresCopas, value: 3 },
+        { id: 17, card: quatroCopas, value: 4 },
+        { id: 18, card: cincoCopas, value: 5 },
+        { id: 19, card: seisCopas, value: 6 },
+        { id: 20, card: seteCopas, value: 7 },
+        { id: 21, card: oitoCopas, value: 8 },
+        { id: 22, card: noveCopas, value: 9 },
+        { id: 23, card: dezCopas, value: 10 },
+        { id: 25, card: valeteCopas, value: 11 },
+        { id: 25, card: damaCopas, value: 12 },
+        { id: 26, card: reiCopas, value: 13 },
+        { id: 27, card: asOuro, value: 1 },
+        { id: 28, card: doisOuro, value: 2 },
+        { id: 29, card: tresOuro, value: 3 },
+        { id: 30, card: quatroOuro, value: 4 },
+        { id: 31, card: cincoOuro, value: 5 },
+        { id: 32, card: seisOuro, value: 6 },
+        { id: 33, card: seteOuro, value: 7 },
+        { id: 34, card: oitoOuro, value: 8 },
+        { id: 35, card: noveOuro, value: 9 },
+        { id: 36, card: dezOuro, value: 10 },
+        { id: 37, card: valeteOuro, value: 11 },
+        { id: 38, card: damaOuro, value: 12 },
+        { id: 39, card: reiOuro, value: 13 },
+        { id: 40, card: asPaus, value: 1 },
+        { id: 41, card: doisPaus, value: 2 },
+        { id: 42, card: tresPaus, value: 3 },
+        { id: 43, card: quatroPaus, value: 4 },
+        { id: 44, card: cincoPaus, value: 5 },
+        { id: 45, card: seisPaus, value: 6 },
+        { id: 46, card: setePaus, value: 7 },
+        { id: 47, card: oitoPaus, value: 8 },
+        { id: 48, card: novePaus, value: 9 },
+        { id: 49, card: dezPaus, value: 10 },
+        { id: 50, card: valetePaus, value: 11 },
+        { id: 51, card: damaPaus, value: 12 },
+        { id: 52, card: reiPaus, value: 13 },
     ])
     const [card, setCard] = useState('');
-    function pullCard(){
+    const [bgCard, setBgCard] = useState('');
+    function pullCard() {
         const count = deck.length - 1;
 
         setCard(deck[count].card);
-
-        if(count > 0){
-            deck.splice(count,1)
+        alterDeck()
+        if (count > 0) {
+            deck.splice(count, 1)
         }
 
     }
+    function alterDeck() {
+        const count = deck.length;
+
+        if (count > 40) {
+            setBgCard(fullDeck);
+        }
+        else if (count > 30) {
+            setBgCard(almostFull);
+        }
+        else if (count > 15) {
+            setBgCard(halfDeck);
+        }
+        else if (count > 2) {
+            setBgCard(emptyDeck);
+        }
+        else{
+            setBgCard('Vazio')
+        }
+    }
+    useEffect(() => {
+        const count = deck.length;
+
+        setBgCard(fullDeck);
+
+
+    }, [])
     return (
         <div id="page-home">
             <Header />
@@ -130,11 +162,13 @@ const Home = () => {
                 <div className="deck">
                     <div className="init">
                         <button>Embaralhar</button>
-                        <div className="deck-content">Teste</div>
+                        <div className="deck-content">
+                            <img src={bgCard} alt={bgCard} />
+                        </div>
                     </div>
                     <div className="show-cards">
                         <div className="deck-content">
-                            <img src={card} alt={card}/>
+                            <img src={card} alt={card} />
                         </div>
                         <button type="button" onClick={pullCard}>Virar uma carta</button>
                     </div>
