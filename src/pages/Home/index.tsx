@@ -118,7 +118,6 @@ const Home = () => {
 
         setCard(deck[count].card);
 
-
         if(count > 0){
             deck.splice(count,1)
         }
