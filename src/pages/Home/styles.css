@@ -65,16 +65,36 @@
     opacity: 0.8;
 }
 .deck-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 2.0rem;
     margin-bottom: 2.0rem;
-    width: 200px;
-    height: 350px;
+    width: 250px;
+    height: 280px;
     background: #ffffff;
     opacity: 0.9;
 }
 
 .players{
     grid-area: players;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.player h1 {
+    font: 500 4.0rem Roboto;
+    color: #ffffff;
+}
+.player .deck-content{
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.9);
+    min-height: 300px;
 }
 .scoreboard{
     grid-area: score;
