@@ -25,6 +25,12 @@
     justify-content: center;
     align-items: center;
 }
+.init .deck-content {
+    cursor: grab;
+}
+.init .deck-content:active{
+    cursor: grabbing;
+}
 .init button{
     cursor: pointer;
     border: none;
