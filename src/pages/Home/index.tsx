@@ -16,7 +16,19 @@ const Home = () => {
    
     const [card, setCard] = useState('');
     const [bgCard, setBgCard] = useState(fullDeck);
+    function shuffle(){
+        var m = deck.length, t, i;
 
+        while(m) {
+            i = Math.floor(Math.random() * m--);
+
+            t = deck[m];
+            deck[m] = deck[i];
+            deck[i] = t;
+        }
+
+        setDeck(deck)
+    }
     function pullCard() {
         const count = deck.length - 1;
 
@@ -53,7 +65,7 @@ const Home = () => {
             <div className="content">
                 <div className="deck">
                     <div className="init">
-                        <button>Embaralhar</button>
+                        <button onClick={shuffle}>Embaralhar</button>
                         <div className="deck-content">
                             <img src={bgCard} alt={bgCard} />
                         </div>
