@@ -16,6 +16,7 @@ const Home = () => {
    
     const [card, setCard] = useState('');
     const [bgCard, setBgCard] = useState(fullDeck);
+
     function shuffle(){
         var m = deck.length, t, i;
 
